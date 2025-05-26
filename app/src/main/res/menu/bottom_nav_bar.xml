@@ -5,4 +5,10 @@
         android:id="@+id/menu_spanyol"
         android:icon="@drawable/baseline_sports_volleyball_24"
         />
+
+    <item
+        android:title="Livescore"
+        android:id="@+id/menu_livescore"
+        android:icon="@drawable/piala"
+        />
 </menu>
