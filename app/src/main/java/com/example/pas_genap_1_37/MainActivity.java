@@ -2,11 +2,7 @@ package com.example.pas_genap_1_37;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,43 +13,44 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private TeamViewModel teamViewModel;
+    private TeamViewModel teamViewModel; // Jika TeamViewModel masih relevan untuk Fragment lain
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Pastikan layout ini memiliki BottomNavigationView dan FrameLayout
+        setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation); // Ganti dengan ID BottomNavigationView Anda
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Inisialisasi ViewModel sekali di MainActivity (shared ke semua fragment)
-        teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
+        teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class); // Jaga ini jika masih dibutuhkan
 
-        // Set fragment default saat activity dibuat
-        loadFragment(SpanyolFragment.newInstance());
+        if (savedInstanceState == null) {
+            loadFragment(SpanyolFragment.newInstance()); // Fragment default tetap Spanyol
+        }
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            Fragment fragment = null;
+            Fragment selectedFragment = null;
             int itemId = item.getItemId();
 
             if (itemId == R.id.menu_spanyol) {
-                fragment = SpanyolFragment.newInstance();
+                selectedFragment = SpanyolFragment.newInstance();
+            } else if (itemId == R.id.menu_players) { // KOREKSI: Tambahkan kondisi untuk menu pemain
+                selectedFragment = PlayerFragment.newInstance();
             }
-            // Tambahkan kondisi lain untuk item menu lainnya dan fragment yang sesuai
 
-            if (fragment != null) {
-                loadFragment(fragment);
+
+            if (selectedFragment != null) {
+                loadFragment(selectedFragment);
                 return true;
             }
             return false;
         });
-
     }
+
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frame_layout, fragment); // Ganti dengan ID FrameLayout Anda
+        ft.replace(R.id.frame_layout, fragment);
         ft.commit();
     }
-
 }
