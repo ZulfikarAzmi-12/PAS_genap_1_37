@@ -8,7 +8,7 @@
     android:padding="8dp"
     android:gravity="center_vertical">
 
-    `<ImageView
+    <ImageView
     android:id="@+id/imageTeam"
     android:layout_width="48dp"
     android:layout_height="48dp"

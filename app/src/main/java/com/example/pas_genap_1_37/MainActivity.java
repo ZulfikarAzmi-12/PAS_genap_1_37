@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); // Pastikan layout ini memiliki BottomNavigationView dan FrameLayout
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation); // Ganti dengan ID BottomNavigationView Anda
 
+        // Inisialisasi ViewModel sekali di MainActivity (shared ke semua fragment)
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
 
+        // Set fragment default saat activity dibuat
         loadFragment(SpanyolFragment.newInstance());
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -37,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.menu_spanyol) {
                 fragment = SpanyolFragment.newInstance();
-            } else if (itemId == R.id.menu_spanyol) { // Tambahkan kondisi untuk item "Search"
-                fragment = com.example.pas_genap_1_37.SpanyolFragment.newInstance(); // Buat instance dari SearchFragment
             }
             // Tambahkan kondisi lain untuk item menu lainnya dan fragment yang sesuai
 
@@ -56,4 +55,5 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.frame_layout, fragment); // Ganti dengan ID FrameLayout Anda
         ft.commit();
     }
+
 }
