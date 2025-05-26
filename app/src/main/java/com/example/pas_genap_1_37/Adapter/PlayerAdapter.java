@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.pas_genap_1_37.R;
-import com.example.pas_genap_1_37.model.Player; // Import model Player
+import com.example.pas_genap_1_37.model.Player;
 
 import java.util.List;
 
@@ -24,14 +24,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public void setPlayerList(List<Player> playerList) {
         this.playerList = playerList;
-        notifyDataSetChanged(); // Penting untuk memperbarui RecyclerView
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_player, parent, false); // Akan kita buat item_player.xml
+                .inflate(R.layout.item_player, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,9 +43,9 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         holder.playerDescription.setText(player.getStrDescriptionEN());
 
         Glide.with(holder.itemView.getContext())
-                .load(player.getStrThumb()) // Memuat gambar potret pemain
-                .placeholder(R.drawable.ic_launcher_foreground) // Ganti dengan placeholder yang sesuai
-                .error(R.drawable.ic_launcher_background) // Ganti dengan error image yang sesuai
+                .load(player.getStrThumb())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_launcher_background)
                 .into(holder.playerThumb);
     }
 
@@ -63,7 +63,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             playerName = itemView.findViewById(R.id.tvPlayerName);
             playerPosition = itemView.findViewById(R.id.tvPlayerPosition);
             playerDescription = itemView.findViewById(R.id.tvPlayerDescription);
-            playerThumb = itemView.findViewById(R.id.imgPlayerThumb); // Akan kita definisikan di item_player.xml
+            playerThumb = itemView.findViewById(R.id.imgPlayerThumb);
         }
     }
 }

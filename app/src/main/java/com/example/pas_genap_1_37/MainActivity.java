@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private TeamViewModel teamViewModel; // Jika TeamViewModel masih relevan untuk Fragment lain
+    private TeamViewModel teamViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class); // Jaga ini jika masih dibutuhkan
+        teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
 
         if (savedInstanceState == null) {
-            loadFragment(SpanyolFragment.newInstance()); // Fragment default tetap Spanyol
+            loadFragment(SpanyolFragment.newInstance());
         }
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.menu_spanyol) {
                 selectedFragment = SpanyolFragment.newInstance();
-            } else if (itemId == R.id.menu_players) { // KOREKSI: Tambahkan kondisi untuk menu pemain
+            } else if (itemId == R.id.menu_players) {
                 selectedFragment = PlayerFragment.newInstance();
             }
 

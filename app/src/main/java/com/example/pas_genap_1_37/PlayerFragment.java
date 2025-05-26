@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pas_genap_1_37.Adapter.PlayerAdapter; // Import adapter baru
+import com.example.pas_genap_1_37.Adapter.PlayerAdapter;
 import com.example.pas_genap_1_37.api.ApiClient;
 import com.example.pas_genap_1_37.api.ApiService;
-import com.example.pas_genap_1_37.model.Player; // Import model baru
-import com.example.pas_genap_1_37.model.PlayerResponse; // Import model respons baru
+import com.example.pas_genap_1_37.model.Player;
+import com.example.pas_genap_1_37.model.PlayerResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,12 +32,10 @@ public class PlayerFragment extends Fragment {
     private List<Player> playerList = new ArrayList<>();
     private ApiService apiService;
 
-    // ID tim yang akan digunakan. Anda bisa membuat ini dinamis jika diperlukan.
-    // Untuk contoh ini, kita gunakan ID tim Real Madrid (133604)
     private static final String TEAM_ID = "133604";
 
     public PlayerFragment() {
-        // Konstruktor kosong diperlukan
+
     }
 
     public static PlayerFragment newInstance() {
@@ -47,20 +45,19 @@ public class PlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Mengembang layout untuk fragment ini
-        return inflater.inflate(R.layout.fragment_player, container, false); // Akan kita buat fragment_player.xml
+        return inflater.inflate(R.layout.fragment_player, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvPlayers = view.findViewById(R.id.rvPlayers); // Akan kita definisikan di fragment_player.xml
+        rvPlayers = view.findViewById(R.id.rvPlayers);
         rvPlayers.setLayoutManager(new LinearLayoutManager(getContext()));
         playerAdapter = new PlayerAdapter(playerList);
         rvPlayers.setAdapter(playerAdapter);
 
         apiService = ApiClient.getClient().create(ApiService.class);
-        fetchPlayers(TEAM_ID); // Memulai pengambilan data pemain
+        fetchPlayers(TEAM_ID);
     }
 
     private void fetchPlayers(String teamId) {

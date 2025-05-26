@@ -1,7 +1,7 @@
 package com.example.pas_genap_1_37;
 
 import android.os.Bundle;
-import android.util.Log; // Tambahkan import ini
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,7 @@ import com.example.pas_genap_1_37.api.ApiService;
 import com.example.pas_genap_1_37.model.Spanyol;
 import com.example.pas_genap_1_37.model.SpanyolResponse;
 
-import java.io.IOException; // Tambahkan import ini
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class SpanyolFragment extends Fragment {
     private SpanyolAdapter spanyolAdapter;
     private List<Spanyol> spanyolList = new ArrayList<>();
     private ApiService apiService;
-    private TeamViewModel teamViewModel; // Pastikan package ini com.example.pas_genap_1_37.TeamViewModel
+    private TeamViewModel teamViewModel;
 
     public SpanyolFragment(){
     }
@@ -58,7 +58,7 @@ public class SpanyolFragment extends Fragment {
         teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
 
         apiService = ApiClient.getClient().create(ApiService.class);
-        fetchTeams("Spain"); // KOREKSI: Gunakan "Spain" karena itu adalah parameter yang diharapkan API
+        fetchTeams("Spain");
     }
 
     private void fetchTeams(String country) {
@@ -68,16 +68,15 @@ public class SpanyolFragment extends Fragment {
             public void onResponse(Call<SpanyolResponse> call, Response<SpanyolResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Spanyol> teams = response.body().getSpanyol();
-                    if (teams != null && !teams.isEmpty()) { // Cek apakah list tidak null dan tidak kosong
+                    if (teams != null && !teams.isEmpty()) {
                         spanyolAdapter.setSpanyolList(teams);
-                        spanyolAdapter.notifyDataSetChanged(); // KOREKSI: Tambahkan ini agar RecyclerView diupdate!
+                        spanyolAdapter.notifyDataSetChanged();
                         teamViewModel.setTeams(teams);
-                        Log.d("SpanyolFragment", "Data tim berhasil dimuat. Jumlah tim: " + teams.size()); // Tambahkan log
+                        Log.d("SpanyolFragment", "Data tim berhasil dimuat. Jumlah tim: " + teams.size());
                     } else {
-                        Log.e("SpanyolFragment", "Respons API berhasil, tapi daftar tim kosong atau null."); // Log error
+                        Log.e("SpanyolFragment", "Respons API berhasil, tapi daftar tim kosong atau null.");
                     }
                 } else {
-                    // Log error HTTP
                     Log.e("SpanyolFragment", "Respons API tidak berhasil: " + response.code() + " - " + response.message());
                     if (response.errorBody() != null) {
                         try {
@@ -91,9 +90,8 @@ public class SpanyolFragment extends Fragment {
 
             @Override
             public void onFailure(Call<SpanyolResponse> call, Throwable t) {
-                // Log kegagalan jaringan atau lainnya
                 Log.e("SpanyolFragment", "Gagal memuat data API: " + t.getMessage(), t);
-                t.printStackTrace(); // Cetak stack trace untuk debugging
+                t.printStackTrace();
             }
         });
     }
