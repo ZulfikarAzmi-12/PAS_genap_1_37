@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class SpanyolResponse {
-    @SerializedName("teams")
+    @SerializedName("teams") // KOREKSI UTAMA DI SINI! Mengubah dari "spanyol" menjadi "teams"
     private List<Spanyol> spanyol;
 
     public List<Spanyol> getSpanyol() {

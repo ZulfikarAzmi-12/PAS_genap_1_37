@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:title="League Spanyol"
         android:id="@+id/menu_spanyol"
         android:icon="@drawable/baseline_sports_volleyball_24"
-        android:title="Liga Spanyol" />
+        />
+
     <item
+        android:title="Pemain"
         android:id="@+id/menu_players"
         android:icon="@drawable/baseline_person_24"
-        android:title="Pemain" />
+        />
+
+    <item
+        android:title="Profile"
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/person"
+        />
+
 </menu>

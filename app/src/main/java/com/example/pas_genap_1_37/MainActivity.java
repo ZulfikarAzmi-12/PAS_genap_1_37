@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = SpanyolFragment.newInstance();
             } else if (itemId == R.id.menu_players) {
                 selectedFragment = PlayerFragment.newInstance();
+            }  else if (itemId == R.id.menu_profile) {
+                selectedFragment = profileFragment.newInstance();
             }
 
 
